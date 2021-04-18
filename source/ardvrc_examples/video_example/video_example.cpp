@@ -1,5 +1,3 @@
-// custom_aruco.cpp : This file contains the 'main' function. Program execution begins and ends there.
-
 // Make sure M_PI is defined so we can use it
 #define _USE_MATH_DEFINES
 

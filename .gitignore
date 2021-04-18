@@ -3,6 +3,9 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# Don't store any of the generated datasets
+datasets/
+
 # User-specific files
 *.rsuser
 *.suo

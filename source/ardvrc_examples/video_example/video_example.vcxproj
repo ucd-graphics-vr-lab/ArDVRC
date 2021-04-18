@@ -86,7 +86,7 @@
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>C:\Program Files %28x86%29\opencv\include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Program Files %28x86%29\opencv\x64\vc16\lib;..\..\..\lib;$(LibraryPath)</LibraryPath>
-    <ExecutablePath>..\..\..\lib;$(ExecutablePath)</ExecutablePath>
+    <ExecutablePath>$(ExecutablePath)</ExecutablePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
