@@ -23,15 +23,6 @@ int main()
 
     ArDVRC ardvrc(N, BLUR, BLUR_KERNEL, RADIUS, RADIUS, "..\\..\\..\\data\\entropy_dictionary\\DICT_4X4_64_ENTROPY.npy",0.00015f);
 
-    // Six different colors used for drawing
-    std::vector<cv::Scalar> colors(6);
-    colors[0] = cv::Scalar(255, 0, 0);
-    colors[1] = cv::Scalar(0, 255, 0);
-    colors[2] = cv::Scalar(0, 0, 255);
-    colors[3] = cv::Scalar(255, 255, 0);
-    colors[4] = cv::Scalar(255, 0, 255);
-    colors[5] = cv::Scalar(0, 255, 255);
-
     cv::Mat img, imgColor;
 
     // Sample recorded video
