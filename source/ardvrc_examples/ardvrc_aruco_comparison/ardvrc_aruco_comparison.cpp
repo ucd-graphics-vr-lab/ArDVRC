@@ -37,7 +37,7 @@ int main()
     cv::Mat img, imgColor;
 
     // Set this to however many images are in the dataset
-    int nImages = 100;
+    int nImages = 10000;
 
     // Storage for data
     // Ids found for each frame
@@ -61,6 +61,13 @@ int main()
 
     // Data folder. Make sure this folder exists and contains TIFF images    
     std::string folder = "control\\";
+    //std::string folder = "occluding_edge_ellipse\\";
+    //std::string folder = "noise\\";
+    //std::string folder = "background_shapes\\";
+    //std::string folder = "motion_blur_horizontal_kernel_10\\";
+    //std::string folder = "motion_blur_horizontal_kernel_20\\";
+    //std::string folder = "motion_blur_horizontal_kernel_30\\";
+    //std::string folder = "decreased_lighting\\";
 
     std::string outfolder = path + folder + "results\\";
 

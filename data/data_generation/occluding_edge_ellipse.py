@@ -18,6 +18,8 @@ focal_length = 700
 
 scale = 1
 
+remove_folder = True 
+
 focal_length = int(focal_length*scale)
 image_size = (int(image_size[0]*scale), int(image_size[1]*scale))
 
@@ -45,11 +47,17 @@ elif response.lower() != 'y':
     exit()
 
 import os
+import shutil
+
 if not os.path.exists(dest_dir):
     os.makedirs(dest_dir)
 else:
-    print('ERROR: The output folder %s already exists. Move, rename or delete this directory and run this program again.' % dest_dir)
-    exit()
+    if remove_folder: 
+        shutil.rmtree(dest_dir)
+        os.makedirs(dest_dir)
+    else:
+        print('ERROR: The output folder %s already exists. Move, rename or delete this directory and run this program again.' % dest_dir)
+        exit()
 
 filenames = [f for f in listdir(source_dir) if (isfile(join(source_dir, f)) and f.endswith('.tif'))]
 
@@ -113,9 +121,24 @@ for f in filenames:
 
             marker_mask = np.zeros_like(a)
             marker_mask = cv2.fillConvexPoly(marker_mask, imagePoints.astype(np.int32), 255)
-            shape_mask[result_gray<255] = 255
+            
+            #count non-zero pixels to calculate the area of the marker 
+            marker_mask_non_zero_pixels =  np.count_nonzero(marker_mask)
+            
 
+            shape_mask[result_gray<255] = 255     
+            
             overlap_pixels = cv2.bitwise_and(shape_mask, marker_mask)
+
+            #count non-zero pixels to calculate the occluded are 
+            overlap_pixels_non_zero = np.count_nonzero(overlap_pixels)
+            
+
+            #calculate the percentage of the occluded area by diving overlapped pixels(mask and object)
+            occlusion_percentage = (overlap_pixels_non_zero/marker_mask_non_zero_pixels) * 100
+
+            # print("occlusion_percentage: ",occlusion_percentage)             
+
             combined_pixels = cv2.bitwise_or(shape_mask, marker_mask)
 
             if overlap_pixels.sum() > 0:
@@ -123,6 +146,9 @@ for f in filenames:
                     continue
                 else:
                     overlap = True
+                    #add occlusion percentage to metadata
+                    meta["occlusion_percentage"] = round(occlusion_percentage, 3)
+                    
 
             a_color[shape_mask>0] = result[shape_mask>0]
           
