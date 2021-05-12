@@ -35,7 +35,7 @@ Go to [CMake's Download page](https://cmake.org/download/) and download the appr
 Download or clone [OpenCV](https://github.com/opencv/opencv) and the [OpenCV contrib modules](https://github.com/opencv/opencv_contrib) and extract/place them in the directory of your choice. Follow [this tutorial](https://cv-tricks.com/how-to/installation-of-opencv-4-1-0-in-windows-10-from-source/) to build OpenCV with contrib modules using CMake. Additionally, you will need to **make sure your OpenCV installation's `bin/` folder is added to your path**.
 
 
-### Building and running example applications
+### Building and running ArDVRC example applications
 
 Example applications are located in `source/examples/`. To build and run an example application, change directory to the example program you'd like to build. For example, to build and run `source/examples/video_example/video_example.cpp`, first navigate to that directory:
 ```
@@ -53,9 +53,12 @@ cmake --build . --config "Release"
 
 If this works, the .exe is now built and is in `/source/examples/video_example/build/Release/`. There will be additional necessary files copied to that directory as well. 
 
-If it did not work, it likely failed to find or use your OpenCV installation while running `cmake ..`. You will need to use CMake GUI to open the example project and specify the `OpenCV_DIR` path explicitly, and then run `cmake ..` again.
-
 For each of the example applications, see the `README.md` files in their respective directories for more information on usage.
+
+
+### Troubleshooting
+
+If the build did not work, it likely failed to find or use your OpenCV installation while running `cmake ..`. You will need to use CMake GUI to open the example project and specify the `OpenCV_DIR` path explicitly, and then run `cmake ..` again.
 
 ------------------------
 
