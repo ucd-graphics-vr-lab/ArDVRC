@@ -24,10 +24,10 @@ int main()
     cv::Mat img, imgColor;
 
     // Sample recorded video
-    //cv::VideoCapture cap("example_video.mp4");
+    cv::VideoCapture cap("example_video.mp4");
 
     // Use this for real-time webcam video
-    cv::VideoCapture cap(0);
+    //cv::VideoCapture cap(0);
 
     // Check if camera opened successfully
     if (!cap.isOpened()) {
@@ -37,7 +37,7 @@ int main()
 
     // Uncomment references to out if you'd like to write a video
     // Make sure you adjust the frames per second, image size, etc. to match your video stream
-    //cv::VideoWriter out = cv::VideoWriter("outputvideo.avi", cv::VideoWriter::fourcc('M', 'J', 'P', 'G'), 60.0, cv::Size(1280, 720 / 2));
+    cv::VideoWriter out = cv::VideoWriter("outputvideo.avi", cv::VideoWriter::fourcc('M', 'J', 'P', 'G'), 60.0, cv::Size(1280, 720 / 2));
 
     while (1) {
 
@@ -84,7 +84,7 @@ int main()
         // Display the resulting frame
         cv::imshow("Output", output);
 
-        //out.write(output);
+        out.write(output);
 
         // Press  ESC on keyboard to exit
         char c = (char)cv::waitKey(5);
@@ -92,7 +92,7 @@ int main()
             break;
     }
 
-    //out.release();
+    out.release();
     // When everything done, release the video capture object
     cap.release();
 

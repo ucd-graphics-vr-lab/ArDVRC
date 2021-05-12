@@ -1,7 +1,12 @@
+
+
 # ArDVRC
+
 AR Directed Vector-Related Corners (ArDVRC) method of square fiducial marker detection and localization. This method is corner-based to help with issues of marker edge occlusions. This repository contains sample applications and data generation scripts.
 
 <img src="http://graphics.ucdenver.edu/img/ardvrc_image_example.png" alt="image_example" style="zoom: 50%;" />
+
+<img src="http://graphics.ucdenver.edu/img/ardvrc_video_example.gif" alt="image_example" style="zoom: 100%;" />
 
 ### System
 
@@ -32,3 +37,8 @@ cd build
 cmake ..
 cmake --build . --config "Release"
 ```
+
+<img src="http://graphics.ucdenver.edu/img/cgvr_lab_black.png" alt="image_example" style="zoom: 15%;" />
+
+<img src="http://graphics.ucdenver.edu/img/cu_denver_logo.jpg" alt="image_example" style="zoom: 40%;" />
+
