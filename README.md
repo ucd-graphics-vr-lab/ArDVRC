@@ -53,6 +53,13 @@ cmake --build . --config "Release"
 
 If this works, the .exe is now built and is in `/source/examples/video_example/build/Release/`. There will be additional necessary files copied to that directory as well. 
 
+To run the application, do the following:
+
+```
+cd Release
+./video_example.exe
+```
+
 For each of the example applications, see the `README.md` files in their respective directories for more information on usage.
 
 
