@@ -15,6 +15,12 @@
 
 int main()
 {
+
+    std::cout << "\n*** Welcome to the ArDVRC Video Example. ***\n\n";
+    std::cout << "Usage:\n\n";
+    std::cout << "\tRunning sample video:\n\n\t\t./video_example.exe\n\n";
+    std::cout << "\tPress 'ESC' to exit.\n\n";
+    
     // Image scaling factor
     const float SCALE = 0.1f;
     const bool BLUR = true;
