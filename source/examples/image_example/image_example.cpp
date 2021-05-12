@@ -5,43 +5,34 @@
 #define USE_GPU 0
 
 #include <iostream>
-/*#include <opencv2/core.hpp>
-#include <opencv2/opencv.hpp>
-#include <opencv2/core/mat.hpp>
-#include <opencv2/imgproc.hpp>
-#include <opencv2/imgcodecs.hpp>
-#include <opencv2/highgui.hpp>*/
 #include <vector>
 #include <string>
 #include <math.h>
 #include <chrono>
 #include <numeric>
-
 #include <limits>
-
-#include "../../../include/ArDVRC.h"
+#include "ArDVRC.h"
 
 int main()
 {
     // Image scaling factor
-    const float SCALE = 0.1f;//0.5f normally
+    const float SCALE = 0.1f;
     const bool BLUR = true;
     const int BLUR_KERNEL = 3;
     const int RADIUS = 4;
     const int ROI_SHAPE = RADIUS * 2 + 1;
     const int N = 5;
 
-    ArDVRC ardvrc(N, BLUR, BLUR_KERNEL, RADIUS, RADIUS, "..\\..\\..\\data\\entropy_dictionary\\DICT_4X4_64_ENTROPY.npy", 0.00015f);
-
+    ArDVRC ardvrc(N, BLUR, BLUR_KERNEL, RADIUS, RADIUS, "DICT_4X4_64_ENTROPY.npy", 0.00015f);
     cv::Mat img, imgColor;
 
     cv::Mat outImg;
 
-    std::vector<std::string> image_paths = { "..\\..\\..\\data\\sample_data\\example_image1.jpg", 
-        "..\\..\\..\\data\\sample_data\\example_image2.jpg",
-        "..\\..\\..\\data\\sample_data\\example_image3.jpg",
-        "..\\..\\..\\data\\sample_data\\example_image4.jpg" };
-    
+    std::vector<std::string> image_paths = { "example_image1.jpg", 
+        "example_image2.jpg",
+        "example_image3.jpg",
+        "example_image4.jpg" };
+
     
     for (int i = 0; i < image_paths.size(); i++) {
 
@@ -80,6 +71,8 @@ int main()
         cv::aruco::detectMarkers(img, ardvrc.dictionary, arucocorners, arucoids, ardvrc.parameters);
 
         cv::aruco::drawDetectedMarkers(arucoFrame, arucocorners, arucoids);
+
+        int k = cv::waitKey(0); // Wait for a keystroke in the window
 
         if (i == 0) {
             outImg = imgColor;

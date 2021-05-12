@@ -17,7 +17,7 @@
 #include <Windows.h>
 #include <cnpy.h>
 #include <limits>
-#include "../../../include/ArDVRC.h"
+#include "ArDVRC.h"
 
 int main()
 {
@@ -32,12 +32,12 @@ int main()
     const int ROI_SHAPE = RADIUS * 2 + 1;
     const int N = 5;
 
-    ArDVRC ardvrc(N, BLUR, BLUR_KERNEL, RADIUS, RADIUS, "..\\..\\..\\data\\entropy_dictionary\\DICT_4X4_64_ENTROPY.npy", 0.00015f);
+    ArDVRC ardvrc(N, BLUR, BLUR_KERNEL, RADIUS, RADIUS, "DICT_4X4_64_ENTROPY.npy", 0.00015f);
 
     cv::Mat img, imgColor;
 
     // Set this to however many images are in the dataset
-    int nImages = 10000;
+    int nImages = 100;
 
     // Storage for data
     // Ids found for each frame
@@ -57,7 +57,7 @@ int main()
     std::vector<float> ardvrcTime(nImages);
 
     // Path to the datasets (assuming you've already generated some datasets)
-    std::string path = "..\\..\\..\\data\\data_generation\\datasets\\";
+    std::string path = "..\\..\\..\\..\\..\\data\\data_generation\\datasets\\";
 
     // Data folder. Make sure this folder exists and contains TIFF images    
     std::string folder = "control\\";
@@ -73,7 +73,8 @@ int main()
 
     // Creates a local results folder for the output data
     std::wstring stemp = std::wstring(outfolder.begin(), outfolder.end());
-    LPCWSTR folderL = stemp.c_str();
+    //LPCWSTR folderL = stemp.c_str();
+    LPCSTR folderL = outfolder.c_str();
     if (CreateDirectory(folderL, NULL) ||
         ERROR_ALREADY_EXISTS == GetLastError())
     {

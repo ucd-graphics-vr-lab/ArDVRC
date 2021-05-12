@@ -116,7 +116,7 @@ for f in filenames:
             shape_mask = np.zeros_like(a)
 
             # Get a random shapes image
-            result, _ = random_shapes(a.shape, min_shapes=1, max_shapes=1, min_size=20, max_size=200, allow_overlap=False, shape='ellipse')#, multichannel=False)#intensity_range=((0,255),))
+            result, _ = random_shapes(a.shape, min_shapes=1, max_shapes=1, min_size=20, max_size=400, allow_overlap=False, shape='ellipse')#, multichannel=False)#intensity_range=((0,255),))
             result_gray = cv2.cvtColor(result, cv2.COLOR_BGR2GRAY)
 
             marker_mask = np.zeros_like(a)

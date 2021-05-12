@@ -6,6 +6,11 @@
 # Don't store any of the generated datasets
 datasets/
 
+# Don't store any of the build folder
+build/
+
+.remove/
+
 # User-specific files
 *.rsuser
 *.suo

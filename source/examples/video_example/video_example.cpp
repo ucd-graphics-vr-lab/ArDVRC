@@ -8,7 +8,7 @@
 #include <chrono>
 #include <numeric>
 #include <limits>
-#include "../../../include/ArDVRC.h"
+#include "ArDVRC.h"
 
 int main()
 {
@@ -19,15 +19,15 @@ int main()
     const int RADIUS = 4;
     const int N = 5;
 
-    ArDVRC ardvrc(N, BLUR, BLUR_KERNEL, RADIUS, RADIUS, "..\\..\\..\\data\\entropy_dictionary\\DICT_4X4_64_ENTROPY.npy",0.00015f);
+    ArDVRC ardvrc(N, BLUR, BLUR_KERNEL, RADIUS, RADIUS, "DICT_4X4_64_ENTROPY.npy",0.00015f);
 
     cv::Mat img, imgColor;
 
     // Sample recorded video
-    cv::VideoCapture cap("..\\..\\..\\data\\sample_data\\example_video.mp4");
+    //cv::VideoCapture cap("example_video.mp4");
 
     // Use this for real-time webcam video
-    //cv::VideoCapture cap(0);
+    cv::VideoCapture cap(0);
 
     // Check if camera opened successfully
     if (!cap.isOpened()) {
