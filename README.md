@@ -38,7 +38,7 @@ cmake ..
 cmake --build . --config "Release"
 ```
 
-<img src="http://graphics.ucdenver.edu/img/cgvr_lab_black.png" alt="image_example" style="zoom: 15%;" />
+<img src="http://graphics.ucdenver.edu/img/cgvr_lab_black.png" alt="image_example" style="zoom: 2%;" />
 
 <img src="http://graphics.ucdenver.edu/img/cu_denver_logo.jpg" alt="image_example" style="zoom: 40%;" />
 
