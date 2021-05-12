@@ -87,7 +87,7 @@ int main()
     int k = cv::waitKey(0); // Wait for a keystroke in the window
     
     // Uncomment to write output image                        
-    //cv::imwrite("output.png", outImg);
+    cv::imwrite("output.png", outImg);
 
     return 0;
 }
