@@ -58,7 +58,17 @@ For each of the example applications, see the `README.md` files in their respect
 
 ### Troubleshooting
 
-If the build did not work, it likely failed to find or use your OpenCV installation while running `cmake ..`. You will need to use CMake GUI to open the example project and specify the `OpenCV_DIR` path explicitly, and then run `cmake ..` again.
+If the build did not work, it likely failed to find or use your OpenCV installation while running `cmake ..`. You will need to use CMake GUI to open the example project and specify the `OpenCV_DIR` path explicitly, and then run `cmake ..` again. Follow these steps:
+
+1) Open CMake GUI.
+2) For the "Where is the source code" field, add the path to the example you're trying to build (`source/examples/video_example/` for example). 
+3) For the "Where to build the binaries" field, add the path to the build directory within your source code directory (`source/examples/video_example/build`).
+4) Set `OpenCV_DIR` to your OpenCV installation path, which should contain a file called `OpenCVConfig.cmake`. For example, my `OpenCV_DIR` is set to `C:\Program Files (x86)\opencv`.
+5) Press "Configure" and then "Generate". 
+
+If that worked, you can go back to the terminal and try running `cmake --build . --config "Release"`.
+
+If it still isn't working, you may try setting the `OpenCV_DIR` path to your OpenCV installations' `lib/` folder and try the configuration and generation step again.
 
 ------------------------
 
