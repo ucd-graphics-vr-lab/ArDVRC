@@ -47,8 +47,7 @@ cd Release
 
 ------------------------
 
-Visit http://graphics.ucdenver.edu/ for more information on this project, and other AR/VR projects from
-CU Denver's Computer Graphics and VR Lab.
+Visit the CU Denver [Computer Graphics and VR Lab](http://graphics.ucdenver.edu/) website for more information on this project, and other AR/VR projects from our lab.
 
 <p align="center">
 <img src="http://graphics.ucdenver.edu/img/cgvr_ucdenver.png" alt="image_example" width="500" />
