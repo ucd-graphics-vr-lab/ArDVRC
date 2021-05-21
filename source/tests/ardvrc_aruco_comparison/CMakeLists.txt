@@ -15,10 +15,10 @@ include_directories( ${OpenCV_INCLUDE_DIRS} )
 #######################################################################################
 
 # ArDVRC, zlib and CNPY are required
-include_directories("../../../ArDVRC/include/")
+include_directories("../../../include/")
 include_directories("C:/Program Files (x86)/zlib/include/")
 include_directories("C:/Program Files (x86)/CNPY/include/")
-link_directories("../../../ArDVRC/lib/")
+link_directories("../../../lib/")
 link_directories("C:/Program Files (x86)/zlib/lib/")
 link_directories("C:/Program Files (x86)/CNPY/lib/")
 

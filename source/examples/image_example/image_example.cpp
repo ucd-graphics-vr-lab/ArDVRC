@@ -13,16 +13,32 @@
 #include <limits>
 #include "ArDVRC.h"
 
-int main()
+int main(int argc, char* argv[])
 {
 
-    std::cout << "\n*** Welcome to the ArDVRC Video Example. ***\n\n";
+    std::cout << "\n*** Welcome to the ArDVRC Image Example. ***\n\n";
     std::cout << "Usage:\n\n";
-    std::cout << "\tRunning sample video:\n\n\t\t./video_example.exe\n\n";
+    std::cout << "\tRunning sample images:\n\n\t\t./image_example.exe\n\n";
+    std::cout << "\tRunning custom images:\n\n\t\t./image_example.exe <image0.jpg> <image1.jpg> ... <imagen.jpg>\n\n";
     std::cout << "\tPress 'ESC' to exit.\n\n";
-    
+
+    std::vector<std::string> image_paths;
+
+    if (argc > 1) {
+        for (int i = 1; i < argc; i++) {
+            image_paths.push_back(std::string(argv[i]));
+     
+        }
+    }
+    else {
+        image_paths.push_back("example_image1.jpg");
+        image_paths.push_back("example_image2.jpg");
+        image_paths.push_back("example_image3.jpg");
+        image_paths.push_back("example_image4.jpg");
+    }
+
     // Image scaling factor
-    const float SCALE = 0.1f;
+    const float SCALE = 0.5f;
     const bool BLUR = true;
     const int BLUR_KERNEL = 3;
     const int RADIUS = 4;
@@ -32,12 +48,7 @@ int main()
     ArDVRC ardvrc(N, BLUR, BLUR_KERNEL, RADIUS, RADIUS, "DICT_4X4_64_ENTROPY.npy", 0.00015f);
     cv::Mat img, imgColor;
 
-    cv::Mat outImg;
-
-    std::vector<std::string> image_paths = { "example_image1.jpg", 
-        "example_image2.jpg",
-        "example_image3.jpg",
-        "example_image4.jpg" };
+    cv::Mat outImg, outAruco;
 
     
     for (int i = 0; i < image_paths.size(); i++) {
@@ -70,7 +81,7 @@ int main()
         ardvrc.detectMarkers(img, corners, ids);
 
         //ardvrc.drawCornerVectors(imgColor, 10, true, true);
-        cv::aruco::drawDetectedMarkers(imgColor, corners, ids, cv::Scalar(255, 0, 255));
+        cv::aruco::drawDetectedMarkers(imgColor, corners, ids, cv::Scalar(255, 255, 0));
 
         std::vector<std::vector<cv::Point2f>> arucocorners;
         std::vector<int> arucoids;
@@ -82,18 +93,22 @@ int main()
 
         if (i == 0) {
             outImg = imgColor;
+            outAruco = arucoFrame;
         }
         else {
             cv::hconcat(outImg, imgColor, outImg);
+            cv::hconcat(outAruco, arucoFrame, outAruco);
         }
 
     }
-    cv::imshow("Display window", outImg);
+    cv::imshow("ArDVRC Results", outImg);
+    cv::imshow("ArUco Results", outAruco);
 
     int k = cv::waitKey(0); // Wait for a keystroke in the window
     
     // Uncomment to write output image                        
-    cv::imwrite("output.png", outImg);
+    cv::imwrite("outputArDVRC.png", outImg);
+    cv::imwrite("outputArUco.png", outAruco);
 
     return 0;
 }

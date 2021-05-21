@@ -149,9 +149,9 @@ if __name__=='__main__':
     #folder = 'datasets/control/'
     #folder = 'datasets/occluding_edge_ellipse/'
     #folder = 'datasets/background_shapes/'
-    #folder = 'datasets/decreased_lighting/'
+    folder = 'datasets/decreased_lighting/'
     #folder = 'datasets/motion_blur_horizontal_kernel_10/'
-    folder = 'datasets/motion_blur_horizontal_kernel_20/'
+    #folder = 'datasets/motion_blur_horizontal_kernel_20/'
     #folder = 'datasets/motion_blur_horizontal_kernel_30/'
     #folder = 'datasets/noise/'
 
@@ -174,6 +174,8 @@ if __name__=='__main__':
     ardvrc_ids = np.load(folder +'results/ardvrc_ids.npy')
     ardvrc_corners = np.load(folder +'results/ardvrc_corners.npy')
     ardvrc_times = np.load(folder + 'results/ardvrc_time.npy')
+
+    print(ardvrc_frames)
 
     # ArUco data (frames, ids, corners, time)
     aruco_frames = np.load(folder +'results/aruco_frames.npy')
@@ -256,9 +258,10 @@ if __name__=='__main__':
     gt_aruco_distances = np.array([math.sqrt( ((p1[0]-p2[0])**2)+((p1[1]-p2[1])**2) ) for p1, p2 in zip(gt_corners_aruco, aruco_corners_gt)])
     gt_ardvrc_distances = np.array([math.sqrt( ((p1[0]-p2[0])**2)+((p1[1]-p2[1])**2) ) for p1, p2 in zip(gt_corners_ardvrc, ardvrc_corners_gt)])
 
-    a = np.where(gt_ardvrc_distances > 100)[0]//4
-    print(a)
-    print(ardvrc_frames[a])
+    a = np.where(gt_ardvrc_distances > 60)[0]//4
+    print('high ardvrc frames', ardvrc_frames[a])
+    b = np.where(gt_aruco_distances > 44)[0]//4
+    print('high aruco frames', aruco_frames[b])
 
     # Statistics for the distances
     gt_aruco_distances_avg = np.average(gt_aruco_distances)
@@ -293,7 +296,7 @@ if __name__=='__main__':
     N, bins, patches = ax.hist(gt_ardvrc_distances, bins=n_bins, label=ardvrc_text, log=True, density=False, alpha=0.6)
 
     # Limits, labels
-    ax.set_xlim(-1.00001, x_max+1)
+    ax.set_xlim(-1.00001, 120)#x_max+1)
     ax.set_xlabel('Corner position error (px)')
     ax.set_ylabel('Corner counts')
     ax.xaxis.set_minor_locator(ticker.AutoMinorLocator(10))

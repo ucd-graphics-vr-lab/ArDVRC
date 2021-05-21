@@ -28,7 +28,7 @@ int main()
     const float SCALE = 0.5f;//0.5f normally
     const bool BLUR = true;
     const int BLUR_KERNEL = 3;
-    const int RADIUS = 4;
+    const int RADIUS = 4; // 4 is the original used for the paper
     const int ROI_SHAPE = RADIUS * 2 + 1;
     const int N = 5;
 
@@ -37,7 +37,7 @@ int main()
     cv::Mat img, imgColor;
 
     // Set this to however many images are in the dataset
-    int nImages = 100;
+    int nImages = 10000;
 
     // Storage for data
     // Ids found for each frame
