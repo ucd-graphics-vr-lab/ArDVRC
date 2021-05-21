@@ -20,7 +20,7 @@ Processes video from a file or a live camera stream using both ArDVRC and ArUco.
 
 ### System, libraries and tools
 
-ArDVRC has been tested in Windows 10 (x64). macOS and Linux coming soon.
+ArDVRC has been tested in Windows 10 (x64) and Arch Linux. macOS coming soon.
 
 The provided example applications are built using CMake, and require OpenCV to be installed with contrib modules. You will need to install OpenCV from source to include the contrib modules. If your system already has CMake and OpenCV with the contrib modules installed, you can skip to the next section. 
 
