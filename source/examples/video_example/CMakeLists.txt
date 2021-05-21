@@ -43,9 +43,14 @@ target_link_libraries(video_example PRIVATE "ArDVRC")
 # .cpp file and avoid using the below copying method.
 
 # Copies the dictionary into the same directory as the executable
-#configure_file("../../../data/entropy_dictionary/DICT_4X4_64_ENTROPY.npy" "./Release/DICT_4X4_64_ENTROPY.npy" COPYONLY)
-configure_file("../../../data/entropy_dictionary/DICT_4X4_64_ENTROPY.npy" "${CMAKE_BINARY_DIR}/DICT_4X4_64_ENTROPY.npy" COPYONLY)
 # Copies example images used in image_example.cpp into the executable directory
-#configure_file("../../../data/sample_data/example_video.mp4" "./Release/example_video.mp4" COPYONLY)
-configure_file("../../../data/sample_data/example_video.mp4" "${CMAKE_BINARY_DIR}/example_video.mp4" COPYONLY)
 
+if (WIN32)
+    configure_file("../../../data/entropy_dictionary/DICT_4X4_64_ENTROPY.npy" "./Release/DICT_4X4_64_ENTROPY.npy" COPYONLY)
+    configure_file("../../../data/sample_data/example_video.mp4" "./Release/example_video.mp4" COPYONLY)
+endif (WIN32)
+
+if (UNIX)
+    configure_file("../../../data/entropy_dictionary/DICT_4X4_64_ENTROPY.npy" "${CMAKE_BINARY_DIR}/DICT_4X4_64_ENTROPY.npy" COPYONLY)
+    configure_file("../../../data/sample_data/example_video.mp4" "${CMAKE_BINARY_DIR}/example_video.mp4" COPYONLY)
+endif (UNIX)

@@ -42,12 +42,26 @@ target_link_libraries(image_example PRIVATE "ArDVRC")
 # if you plan to use a lot of images or large videos, please us correct paths in the 
 # .cpp file and avoid using the below copying method.
 
-# Copies the dictionary into the same directory as the executable
-configure_file("../../../data/entropy_dictionary/DICT_4X4_64_ENTROPY.npy" "./Release/DICT_4X4_64_ENTROPY.npy" COPYONLY)
 
-# Copies example images used in image_example.cpp into the executable directory
-configure_file("../../../data/sample_data/example_image1.jpg" "./Release/example_image1.jpg" COPYONLY)
-configure_file("../../../data/sample_data/example_image2.jpg" "./Release/example_image2.jpg" COPYONLY)
-configure_file("../../../data/sample_data/example_image3.jpg" "./Release/example_image3.jpg" COPYONLY)
-configure_file("../../../data/sample_data/example_image4.jpg" "./Release/example_image4.jpg" COPYONLY)
+if (WIN32)
 
+    # Copies dictionary to executable directory
+    configure_file("../../../data/entropy_dictionary/DICT_4X4_64_ENTROPY.npy" "./Release/DICT_4X4_64_ENTROPY.npy" COPYONLY)
+    
+    # Copies example images used in image_example.cpp into the executable directory
+    configure_file("../../../data/sample_data/example_image1.jpg" "./Release/example_image1.jpg" COPYONLY)
+    configure_file("../../../data/sample_data/example_image2.jpg" "./Release/example_image2.jpg" COPYONLY)
+    configure_file("../../../data/sample_data/example_image3.jpg" "./Release/example_image3.jpg" COPYONLY)
+    configure_file("../../../data/sample_data/example_image4.jpg" "./Release/example_image4.jpg" COPYONLY)
+
+endif (WIN32)
+
+if (UNIX)
+    configure_file("../../../data/entropy_dictionary/DICT_4X4_64_ENTROPY.npy" "${CMAKE_BINARY_DIR}/DICT_4X4_64_ENTROPY.npy" COPYONLY)
+    
+    # Copies example images used in image_example.cpp into the executable directory
+    configure_file("../../../data/sample_data/example_image1.jpg" "${CMAKE_BINARY_DIR}/example_image1.jpg" COPYONLY)
+    configure_file("../../../data/sample_data/example_image2.jpg" "${CMAKE_BINARY_DIR}/example_image2.jpg" COPYONLY)
+    configure_file("../../../data/sample_data/example_image3.jpg" "${CMAKE_BINARY_DIR}/example_image3.jpg" COPYONLY)
+    configure_file("../../../data/sample_data/example_image4.jpg" "${CMAKE_BINARY_DIR}/example_image4.jpg" COPYONLY)
+endif (UNIX)
